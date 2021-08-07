@@ -33,22 +33,19 @@ However, it’s fairly abstract and hard to understand for people new to scienti
 Let's consider a non-stiff ODE
 
 
-
-<img src="https://latex.codecogs.com/gif.latex?\textrm{y'}=\textrm{Ay}"/>
-
-
-
-where <img src="https://latex.codecogs.com/gif.latex?\inline&space;A=\lambda"/>
+$y'=Ay$
 
 
 
-
-In the first case we have <img src="https://latex.codecogs.com/gif.latex?\inline&space;\lambda&space;\;=-0\ldotp&space;1"/>. The solution is 
-
+where $A=\lambda$
 
 
 
-<img src="https://latex.codecogs.com/gif.latex?\inline&space;y\left(t\right)=e^{-0\ldotp&space;1t}&space;y\left(0\right)"/>,
+In the first case we have $\lambda=-0.1$. The solution is 
+
+
+
+$y(t)=e^{-0.1t}y(0)$,
 
 
 
@@ -115,35 +112,19 @@ steps to achieve the specified tolerance.
 Let's consider the same equation
 
 
-
-<img src="https://latex.codecogs.com/gif.latex?\textrm{y'}=\textrm{Ay}"/>
-
-
-
-but now <img src="https://latex.codecogs.com/gif.latex?\inline&space;A=\left\lbrack&space;\begin{array}{cc}
-\lambda_1&space;&space;&&space;\\
-&space;&&space;\lambda_2&space;
-\end{array}\right\rbrack"/>
+$y'=Ay$
 
 
 
-
-In the first case we have <img src="https://latex.codecogs.com/gif.latex?\inline&space;\lambda_1&space;=-0\ldotp&space;1,\;\lambda_2&space;={10}^3&space;\lambda_1"/>. This means we have two decoupled equations. The solution is 
-
+but now $A=\begin{bmatrix}\lambda_1 & \\ & \lambda_2\end{bmatrix}$
 
 
 
-<img src="https://latex.codecogs.com/gif.latex?\inline&space;y\left(t\right)=\left\lbrack&space;\begin{array}{c}
-y_1&space;\left(t\right)\\
-y_2&space;\left(t\right)
-\end{array}\right\rbrack&space;=\left\lbrack&space;\begin{array}{c}
-e^{-0\ldotp&space;1t}&space;y_1&space;\left(0\right)\\
-e^{-100t}&space;y_2&space;\left(0\right)
-\end{array}\right\rbrack"/>,
+In the first case we have $\lambda_1=-0.1,\ \lambda_2=10^3\lambda_1$. This means we have two decoupled equations. The solution is 
 
 
+$y(t)=\begin{bmatrix}y_1(t)\\y_2(t)\end{bmatrix}=\begin{bmatrix}e^{-0.1t}y_1(0)\\e^{-100t}y_2(0)\end{bmatrix}$,
 meaning we have two exponential decaying functions.
-
 
 
 ```python
@@ -182,7 +163,7 @@ plt.show()
     
 
 
-This time we get 2 decaying functions, and <img src="https://latex.codecogs.com/gif.latex?\inline&space;y_2"/> decays much faster then <img src="https://latex.codecogs.com/gif.latex?\inline&space;y_1"/>. In this same interval, `RK45` used 
+This time we get 2 decaying functions, and $y_2$ decays much faster then $y_1$. In this same interval, `RK45` used 
 
 
 ```python
@@ -196,8 +177,8 @@ sol.t.size
 
 
 
-steps to achieve the desired error tolerance. In this example, <img src="https://latex.codecogs.com/gif.latex?\inline&space;y_1"/> is exactly the same as the solution in Example 1, but it take much longer to calculate. One may think the step size of `RK45` is limited by the *accuracy requirement* due to the addition of <img src="https://latex.codecogs.com/gif.latex?\inline&space;y_2"/>. However, this is clearly not the case since <img src="https://latex.codecogs.com/gif.latex?\inline&space;y_2"/> is almost identically <img src="https://latex.codecogs.com/gif.latex?\inline&space;0"/> on the entire interval. What is happening here is that, the step size of `RK45` is limited by the *stability requirement* of <img src="https://latex.codecogs.com/gif.latex?\inline&space;y_2"/>, and we call the ODE in Example 2 ***stiff***.
 
+steps to achieve the desired error tolerance. In this example, $y_1$ is exactly the same as the solution in Example 1, but it take much longer to calculate. One may think the step size of `RK45` is limited by the *accuracy requirement* due to the addition of $y_2$. However, this is clearly not the case since $y_2$ is almost identically $0$ on the entire interval. What is happening here is that, the step size of `RK45` is limited by the *stability requirement* of $y_2$, and we call the ODE in Example 2 ***stiff***.
 
 
 
@@ -271,7 +252,7 @@ sol.t.size
 
 
 
-steps. Apparently, `BDF` and `Radau` is significantly more efficient than `RK45` for this example. From the figure above, we can also see that `BDF` and `Radau` stratigically used shorter step size when <img src="https://latex.codecogs.com/gif.latex?\inline&space;y_2"/> is decaying fast, and larger step size when <img src="https://latex.codecogs.com/gif.latex?\inline&space;y_2"/> flattens out.
+steps. Apparently, `BDF` and `Radau` is significantly more efficient than `RK45` for this example. From the figure above, we can also see that `BDF` and `Radau` stratigically used shorter step size when $y_2$ is decaying fast, and larger step size when $y_2$ flattens out.
 
 At this point you may think that if you don't know whether an ODE is stiff or not, it is always better to use `BDF` and `Radau`. However, this is not the case, as we will show in the next example.
 
@@ -280,24 +261,21 @@ At this point you may think that if you don't know whether an ODE is stiff or no
 ## Example 3
 
 
+
 Let's look at an oscillatory ODE
 
 
-
-<img src="https://latex.codecogs.com/gif.latex?\textrm{y'}=Ly"/>
-
-
-
-and <img src="https://latex.codecogs.com/gif.latex?\inline&space;L=\left\lbrack&space;\begin{array}{cc}
-&space;&&space;\lambda&space;\;\\
--\lambda&space;\;&space;&&space;
-\end{array}\right\rbrack&space;,\;\lambda&space;=-0\ldotp&space;1"/>
-
-The eigenpairs of <img src="https://latex.codecogs.com/gif.latex?\inline&space;L"/> are
+$y'=Ly$
 
 
 
-<img src="https://latex.codecogs.com/gif.latex?\left(\pm&space;\lambda&space;i\;,\left\lbrack&space;\begin{array}{c}&space;1\\&space;\pm&space;i&space;\end{array}\right\rbrack&space;\right)"/>  
+and $L=\begin{bmatrix} & \lambda\\-\lambda & \end{bmatrix},\ \lambda=-0.1$
+
+The eigenpairs of $L$
+ are
+
+
+$(\pm\lambda i,\;\begin{bmatrix}1 \\ \pm i\end{bmatrix})$
 
 
 
@@ -361,43 +339,20 @@ As expected, we see two slow oscillatory functions.
 Now let's look at a stiff oscillatory ODE
 
 
-
-<img src="https://latex.codecogs.com/gif.latex?\textrm{y'}=Ly"/>
-
-
-
-and <img src="https://latex.codecogs.com/gif.latex?\inline&space;L=\left\lbrack&space;\begin{array}{cc}
-&space;&&space;A\\
--A&space;&&space;
-\end{array}\right\rbrack&space;,\;A=\left\lbrack&space;\begin{array}{cc}
-\lambda_1&space;&space;&&space;\\
-&space;&&space;\lambda_2&space;
-\end{array}\right\rbrack"/>
+$y'=Ly$
 
 
 
-
-The eigenpairs of <img src="https://latex.codecogs.com/gif.latex?\inline&space;L"/> are
-
+and $L=\begin{bmatrix}& A\\ -A &\end{bmatrix},\: A=\begin{bmatrix}\lambda_1 & \\ & \lambda_2\end{bmatrix}$
 
 
-
-<img src="https://latex.codecogs.com/gif.latex?\inline&space;\left(\pm&space;\lambda_1&space;i,\left\lbrack&space;\begin{array}{c}
-1\\
-0\\
-\pm&space;\;i\\
-0
-\end{array}\right\rbrack&space;\right)"/>, and <img src="https://latex.codecogs.com/gif.latex?\inline&space;\left(\pm&space;\lambda_2&space;i,\left\lbrack&space;\begin{array}{c}
-0\\
-1\\
-0\\
-\pm&space;i
-\end{array}\right\rbrack&space;\right)"/> 
+The eigenpairs of $L$
+are $\begin{pmatrix}\pm \lambda_1i, \begin{bmatrix}1 \\ 0 \\ \pm i \\ 0\end{bmatrix}\end{pmatrix}$ and $\begin{pmatrix}\pm \lambda_2i, \begin{bmatrix}0 \\ 1 \\ 0 \\ \pm i\end{bmatrix}\end{pmatrix}$
 
 
 
+Similar to before, we set $\lambda_1=0.1, \lambda_2=100\lambda_1$. Now we have both fast and slow oscillatory functions in our solution.
 
-Similar to before, we set <img src="https://latex.codecogs.com/gif.latex?\inline&space;\lambda_1&space;=0\ldotp&space;1,\lambda_2&space;=100\lambda_1"/>. Now we have both fast and slow oscillatory functions in our solution.
 
 
 
@@ -533,5 +488,8 @@ sol.t.size
 
 
 Notice highly oscillatory and stiff ODEs are generally hard to solve. All the solvers, `RK45`, `BDF`, and `Radau` take very short steps and become very expensive. 
+
+**Info:** You may feel the examples here are quite artificial since they are all linear and the analytical solutions are available. However, I feel it's pedagogical to introduce stiffness in a simple setting like this. There will be a future post demonstrating stiff ODEs in nonlinear cases. 
+{: .notice--info}
 
 This blog post is published at [https://edwinchenyj.github.io.](https://edwinchenyj.github.io.) The pdf version and the source code are available at [https://github.com/edwinchenyj/scientific-computing-notes](https://github.com/edwinchenyj/scientific-computing-notes).
