@@ -33,19 +33,19 @@ However, it’s fairly abstract and hard to understand for people new to scienti
 Let's consider a non-stiff ODE
 
 
-$y'=Ay$
+$$y'=Ay$$
 
 
 
-where $A=\lambda$
+where $$A=\lambda$$
 
 
 
-In the first case we have $\lambda=-0.1$. The solution is 
+In the first case we have $$\lambda=-0.1$$. The solution is 
 
 
 
-$y(t)=e^{-0.1t}y(0)$,
+$$y(t)=e^{-0.1t}y(0)$$,
 
 
 
@@ -112,18 +112,18 @@ steps to achieve the specified tolerance.
 Let's consider the same equation
 
 
-$y'=Ay$
+$$y'=Ay$$
 
 
 
-but now $A=\begin{bmatrix}\lambda_1 & \\ & \lambda_2\end{bmatrix}$
+but now $$A=\begin{bmatrix}\lambda_1 & \\ & \lambda_2\end{bmatrix}$$
 
 
 
-In the first case we have $\lambda_1=-0.1,\ \lambda_2=10^3\lambda_1$. This means we have two decoupled equations. The solution is 
+In the first case we have $$\lambda_1=-0.1,\ \lambda_2=10^3\lambda_1$$. This means we have two decoupled equations. The solution is 
 
 
-$y(t)=\begin{bmatrix}y_1(t)\\y_2(t)\end{bmatrix}=\begin{bmatrix}e^{-0.1t}y_1(0)\\e^{-100t}y_2(0)\end{bmatrix}$,
+$$y(t)=\begin{bmatrix}y_1(t)\\y_2(t)\end{bmatrix}=\begin{bmatrix}e^{-0.1t}y_1(0)\\e^{-100t}y_2(0)\end{bmatrix}$$,
 meaning we have two exponential decaying functions.
 
 
@@ -163,7 +163,7 @@ plt.show()
     
 
 
-This time we get 2 decaying functions, and $y_2$ decays much faster then $y_1$. In this same interval, `RK45` used 
+This time we get 2 decaying functions, and $$y_2$$ decays much faster then $$y_1$$. In this same interval, `RK45` used 
 
 
 ```python
@@ -178,7 +178,7 @@ sol.t.size
 
 
 
-steps to achieve the desired error tolerance. In this example, $y_1$ is exactly the same as the solution in Example 1, but it take much longer to calculate. One may think the step size of `RK45` is limited by the *accuracy requirement* due to the addition of $y_2$. However, this is clearly not the case since $y_2$ is almost identically $0$ on the entire interval. What is happening here is that, the step size of `RK45` is limited by the *stability requirement* of $y_2$, and we call the ODE in Example 2 ***stiff***.
+steps to achieve the desired error tolerance. In this example, $$y_1$$ is exactly the same as the solution in Example 1, but it take much longer to calculate. One may think the step size of `RK45` is limited by the *accuracy requirement* due to the addition of $$y_2$$. However, this is clearly not the case since $$y_2$$ is almost identically $$0$$ on the entire interval. What is happening here is that, the step size of `RK45` is limited by the *stability requirement* of $$y_2$$, and we call the ODE in Example 2 ***stiff***.
 
 
 
@@ -252,7 +252,7 @@ sol.t.size
 
 
 
-steps. Apparently, `BDF` and `Radau` is significantly more efficient than `RK45` for this example. From the figure above, we can also see that `BDF` and `Radau` stratigically used shorter step size when $y_2$ is decaying fast, and larger step size when $y_2$ flattens out.
+steps. Apparently, `BDF` and `Radau` is significantly more efficient than `RK45` for this example. From the figure above, we can also see that `BDF` and `Radau` stratigically used shorter step size when $$y_2$$ is decaying fast, and larger step size when $$y_2$$ flattens out.
 
 At this point you may think that if you don't know whether an ODE is stiff or not, it is always better to use `BDF` and `Radau`. However, this is not the case, as we will show in the next example.
 
@@ -265,17 +265,17 @@ At this point you may think that if you don't know whether an ODE is stiff or no
 Let's look at an oscillatory ODE
 
 
-$y'=Ly$
+$$y'=Ly$$
 
 
 
-and $L=\begin{bmatrix} & \lambda\\-\lambda & \end{bmatrix},\ \lambda=-0.1$
+and $$L=\begin{bmatrix} & \lambda\\-\lambda & \end{bmatrix},\ \lambda=-0.1$$
 
-The eigenpairs of $L$
+The eigenpairs of $$L$$
  are
 
 
-$(\pm\lambda i,\;\begin{bmatrix}1 \\ \pm i\end{bmatrix})$
+$$(\pm\lambda i,\;\begin{bmatrix}1 \\ \pm i\end{bmatrix})$$
 
 
 
@@ -339,19 +339,19 @@ As expected, we see two slow oscillatory functions.
 Now let's look at a stiff oscillatory ODE
 
 
-$y'=Ly$
+$$y'=Ly$$
 
 
 
-and $L=\begin{bmatrix}& A\\ -A &\end{bmatrix},\: A=\begin{bmatrix}\lambda_1 & \\ & \lambda_2\end{bmatrix}$
+and $$L=\begin{bmatrix}& A\\ -A &\end{bmatrix},\: A=\begin{bmatrix}\lambda_1 & \\ & \lambda_2\end{bmatrix}$$
 
 
-The eigenpairs of $L$
-are $\begin{pmatrix}\pm \lambda_1i, \begin{bmatrix}1 \\ 0 \\ \pm i \\ 0\end{bmatrix}\end{pmatrix}$ and $\begin{pmatrix}\pm \lambda_2i, \begin{bmatrix}0 \\ 1 \\ 0 \\ \pm i\end{bmatrix}\end{pmatrix}$
+The eigenpairs of $$L$$
+are $$\begin{pmatrix}\pm \lambda_1i, \begin{bmatrix}1 \\ 0 \\ \pm i \\ 0\end{bmatrix}\end{pmatrix}$$ and $$\begin{pmatrix}\pm \lambda_2i, \begin{bmatrix}0 \\ 1 \\ 0 \\ \pm i\end{bmatrix}\end{pmatrix}$$
 
 
 
-Similar to before, we set $\lambda_1=0.1, \lambda_2=100\lambda_1$. Now we have both fast and slow oscillatory functions in our solution.
+Similar to before, we set $$\lambda_1=0.1, \lambda_2=100\lambda_1$$. Now we have both fast and slow oscillatory functions in our solution.
 
 
 
