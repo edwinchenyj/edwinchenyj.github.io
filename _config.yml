@@ -105,7 +105,7 @@ analytics:
 author:
   name             : "Edwin Chen"
   avatar           : "/assets/images/profile.jpg" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "My name is Edwin Chen. I am a software engineer at Rapidia Tech Inc. I have a Ph.D in Computer Science from UBC."
+  bio              : "My name is Edwin Chen. I am currently a software engineer. I have a Ph.D in Computer Science from UBC."
   location         : "Vancouver"
   links:
     - label: "Email"
