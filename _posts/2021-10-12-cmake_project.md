@@ -1,5 +1,5 @@
 ---
-title:  "Introduction to Compiling C++ projects, Part 1"
+title:  "An Introduction to Compiling C++ projects, Part 1"
 author: Ed
 categories:
         - Software Engineering

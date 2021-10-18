@@ -30,9 +30,9 @@ teaser                   : # path of fallback teaser image, e.g. "/assets/images
 logo                     :  # path of logo image to display in the masthead, e.g. "/assets/images/88x88.png"
 masthead_title           : # overrides the website title displayed in the masthead, use " " for no title
 # breadcrumbs            : false # true, false (default)
-words_per_minute         : 200
+words_per_minute         : 150
 comments:
-  provider               : "utterances" # false (default), "disqus", "discourse", "facebook", "staticman", "staticman_v2", "utterances", "giscus", "custom"
+  provider               :  "utterances" # false (default), "disqus", "discourse", "facebook", "staticman", "staticman_v2", "utterances", "giscus", "custom"
   disqus:
     shortname            : # https://help.disqus.com/customer/portal/articles/466208-what-s-a-shortname-
   discourse:
@@ -105,7 +105,7 @@ analytics:
 author:
   name             : "Edwin Chen"
   avatar           : "/assets/images/profile.jpg" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "My name is Edwin Chen. I am currently a software engineer. I have a Ph.D in Computer Science from UBC."
+  bio              : "My name is Edwin Chen. I am a software engineer with strong interests in scientific computing. I obtained my PhD at UBC, where I worked with Uri Ascher and Dinesh Pai on numerical methods for stiff elastodynamic systems."
   location         : "Vancouver"
   links:
     - label: "Email"
@@ -126,6 +126,9 @@ author:
     # - label: "Instagram"
     #   icon: "fab fa-fw fa-instagram"
       # url: "https://instagram.com/"
+    - label: "Google Scholar"
+      icon: "fa fa-graduation-cap"
+      url: "https://scholar.google.ca/citations?user=7mZ4VXkAAAAJ"
 
 # Site Footer
 footer:
@@ -274,6 +277,14 @@ compress_html:
   ignore:
     envs: development
 
+collections:
+  publications:
+    output: true
+    permalink: /:collection/:path/
+    # order:
+    #   - 2020-08-26-siere.md
+    #   - 2019-07-26-eigenfit.md
+    #   - 2017-11-01-ere.md
 
 # Defaults
 defaults:
@@ -289,3 +300,12 @@ defaults:
       share: true
       related: true
       mathjax: true
+  # _publications
+  - scope:
+      path: ""
+      type: publications
+    values:
+      layout: single
+      author_profile: false
+      share: true
+

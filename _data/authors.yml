@@ -1,6 +1,6 @@
 author:
   name             : "Ed"
-  bio              : "My name is Edwin Chen. I am a software engineer at Rapidia Tech Inc. I have a Ph.D in Computer Science from UBC."
+  bio              : "My name is Edwin Chen. I am a software engineer with strong interests in scientific computing. I obtained my PhD at UBC, where I worked with Uri Ascher and Dinesh Pai on numerical methods for stiff elastodynamic systems."
   location         : "Vancouver"
   links:
     - label: "Email"
@@ -21,3 +21,6 @@ author:
     # - label: "Instagram"
     #   icon: "fab fa-fw fa-instagram"
       # url: "https://instagram.com/"
+    - label: "Google Scholar"
+      icon: "fa fa-graduation-cap"
+      url: "https://scholar.google.ca/citations?user=7mZ4VXkAAAAJ"
