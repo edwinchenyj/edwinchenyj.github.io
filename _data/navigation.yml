@@ -12,6 +12,8 @@ main:
   #   url: /sitemap/
   # - title: "About"
   #   url: /about/
+  - title: "CV"
+    url: /files/edwin_cv.pdf
   - title: "Publications"
     url: /
   - title: "Posts"
