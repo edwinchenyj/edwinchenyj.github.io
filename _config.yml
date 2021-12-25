@@ -105,7 +105,7 @@ analytics:
 author:
   name             : "Edwin Chen"
   avatar           : "/assets/images/profile.jpg" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "My name is Edwin Chen. I am a software engineer with strong interests in scientific computing. I obtained my PhD at UBC, where I worked with Uri Ascher and Dinesh Pai on numerical methods for stiff elastodynamic systems."
+  bio              : "My name is Edwin Chen. I am a software engineer with strong interests in scientific computing. I am currently a postdoctoral fellow at UBC investigating exponential integrators with constraints using machine learning."
   location         : "Vancouver"
   links:
     - label: "Email"
