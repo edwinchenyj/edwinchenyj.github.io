@@ -8,7 +8,7 @@ tags:
         - CMake
 toc: true
 toc_sticky: true
-excerpt: "A brief introduction on starting C++ projects and why CMake can be useful with examples"
+excerpt: "A brief introduction on starting C++ projects"
 ---
 
 
@@ -47,12 +47,10 @@ If you have multiple functions that get called in the main function, and you wan
 
 ``` c++
 int main(){
-
-auto input = get_input();
-auto result = process_intput(input);
-show_result(result);
-return 0;
-
+        auto input = get_input();
+        auto result = process_intput(input);
+        show_result(result);
+        return 0;
 }
 
 ```
@@ -78,7 +76,7 @@ g++ main.cpp -o output
 you would get some errors that look like
 `error: ‘get_input’ was not declared in this scope`
 
-This is because you only tell `g++` to compile the file `main.cpp`, and there is no function declaration of `get_input` and other functions by the time the compile see those function in `main()` function. The first step to resolve this issue is adding the function declaration in `main.cpp`, before `main()`.
+This is because you only told `g++` to compile the file `main.cpp`, and there was no function declaration of `get_input` and other functions by the time the compile saw those function in `main()` function. The first step to resolve this issue is adding the function declaration in `main.cpp`, before `main()`.
 
 
 ## Step 3
@@ -89,12 +87,10 @@ double process_input(double input);
 void show_result(double result);
 
 int main(){
-
-auto input = get_input();
-auto result = process_input(input);
-show_result(result);
-return 0;
-
+        auto input = get_input();
+        auto result = process_input(input);
+        show_result(result);
+        return 0;
 }
 
 ```
@@ -113,7 +109,7 @@ main.cpp:(.text+0xd): undefined reference to `get_input()'
 
 ```
 
-I am showing more detail about this error because you can see that compiler actually generated a `.o` file, but failed at the linking stage because it could not find the definition of `get_input()`.
+I am showing more detail about this error because you could see that compiler actually generated a `.o` file, but failed at the linking stage because it could not find the definition of `get_input()`.
 
 ## Step 4
 
@@ -126,19 +122,17 @@ double process_input(auto input);
 void show_result(auto result);
 
 int main(){
-
-return 0;
-
+        return 0;
 }
 
 ```
 
-It turns out this file compiles fine! So it's more obvious that the errors we got before occurs at the linking stage.
+It turns out this file compiles fine! So it's clear that the new error we got occurs at the linking stage.
 
 
 ## Step 5
 
-Before we solve the linking problem, it's better to put the function declarations in header files and then include them at the top of the file that uses the functions. So let's do that step by step.
+Before we resolve the linking problem, it's better to put the function declarations in header files and then include them at the top of the file that uses the functions. So let's do that step by step.
 
 ```
 
@@ -160,8 +154,7 @@ project
 #include "show_result.h"
 
 int main(){
-
-return 0;
+        return 0;
 }
 
 ```
@@ -179,18 +172,15 @@ Next we add back the function calls
 #include "show_result.h"
 
 int main(){
-
-auto input = get_input();
-auto result = process_input(input);
-show_result(result);
-
-return 0;
-
+        auto input = get_input();
+        auto result = process_input(input);
+        show_result(result);
+        return 0;
 }
 
 ```
 
-And I get the linking error that we saw before
+Now we reproduced the linking error we saw before
 
 ```
 
@@ -213,6 +203,12 @@ g++ main.cpp get_input.o -o output
 ```
 
 We successfully helped the linker to find `get_input()` and pass the previous error! Now we still have to link ther rest of the functions.
+
+```
+g++ get_input.cpp process_input.cpp show_result.cpp -c
+g++ main.cpp get_input.o process_input.o show_result.o -o output
+```
+
 
 **Info:** The object file `get_input.o` we compiled using flag `-c` means that we asked `g++` to skip the linking stage. So `g++ main.cpp -c` would actually work without any error. There are other `g++` flags used to generate shared libraries and we can talk about in the future posts. 
 {: .notice--info}
