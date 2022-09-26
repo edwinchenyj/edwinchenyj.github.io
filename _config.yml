@@ -106,7 +106,7 @@ author:
   name             : "Edwin Chen"
   avatar           : "/assets/images/profile.jpg" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
   bio              : "My name is Edwin Chen. I am a software engineer with strong interests in scientific computing."
-  location         : "Vancouver"
+  location         : "Los Angeles"
   links:
     - label: "Email"
       icon: "fas fa-fw fa-envelope-square"
