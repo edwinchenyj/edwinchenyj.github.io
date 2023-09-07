@@ -1,7 +1,7 @@
 ---
 title:  "Deploy static threejs site on Github Pages"
 author: Ed
-last_modified_at: 2023-02-15
+last_modified_at: 2023-09-07
 categories:
         - Web
 tags:
@@ -9,22 +9,24 @@ tags:
         - ChatGPT
 toc: true
 toc_sticky: true
-excerpt: "I used ChatGPT to help me learn how to deploy a static ThreeJS site correctly on Github Pages"
+excerpt: "I leveraged ChatGPT to guide me in deploying a static ThreeJS site on Github Pages effectively"
 ---
 
-I started learning from [ThreeJS Journey](https://threejs-journey.com/) and I am deploying the project sites to another [Github Pages under my account](https://edwinchenyj.github.io/tjs-journey-preview/).
+I began my learning journey with [ThreeJS Journey](https://threejs-journey.com/) and have deployed the project sites to [Github Pages under my account](https://edwinchenyj.github.io/tjs-journey-preview/).
 
-The course actually teaches how to deploy to Vercel. However, since I am already using Github, this is an more straight forward option for me.
+The course recommends deployment via Vercel. However, since I'm already familiar with Github, it felt like a more straightforward choice for me.
 
-However, when I followed the [vite official instructions](https://vitejs.dev/guide/static-deploy.html), the deployed site was all black.
+Yet, when I adhered to the [vite official instructions](https://vitejs.dev/guide/static-deploy.html), the deployed site appeared entirely black.
 ![png](/assets/images/three-js-deploy-black.png)
 
-After trying to debug by myself for a little while, I realized I should ask ChatGPT.
+After attempting to debug on my own for a while, I decided to seek help from ChatGPT.
 ![png](/assets/images/learning-deployment-chatgpt.png)
 
 Even though the answers didn't fix the issues I faced, I learned from Answer 1. ChatGPT that I need to fixed the asset paths. So I did exactly that, but not in index.html. 
 There are a few line in `script.js` loading the assests, so I added the new base location to the Github Pages repo as indicated from the [vite official instructions](https://vitejs.dev/guide/static-deploy.html) in the `script.js` as well.
 
-*vio la*
+While the responses didn't directly resolve my issues, Answer 1 from ChatGPT made me realize that I needed to fix the asset paths. I proceeded to do exactly that. Instead of adjusting it in `index.html`, I made changes in `script.js`, which was responsible for loading the assets. I incorporated the new base location for the Github Pages repo, as suggested by the [vite official instructions](https://vitejs.dev/guide/static-deploy.html) into script.js.
+
+*voilà*
 
 ![png](/assets/images/three-js-deploy-success.png)
